@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "./axiosWithAuth";
+import axios from "axios";
 import {
   ButtonGreen,
   ButtonRed,
@@ -8,7 +8,8 @@ import {
   Input,
   Card,
   Wrapper,
-  Title
+  Title,
+  Logo
 } from "./login";
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
   department: ""
 };
 
-const SignUpForm = () => {
+const SignUpForm = props => {
   const [credentials, setCredentials] = useState(initialState);
   console.log(credentials);
 
@@ -28,17 +29,24 @@ const SignUpForm = () => {
   const handleSignUp = e => {
     e.preventDefault();
     console.log(credentials);
-    axiosWithAuth()
-      .post("/createnewuser", credentials)
+    axios
+      .post(
+        "https://anywhere-fitness92.herokuapp.com/api/auth/register",
+        credentials
+      )
       .then(response => {
         console.log(response);
+        localStorage.setItem("token", response.data.token);
+        props.history.push("/login");
       })
       .catch(err => console.log(err));
   };
   return (
     <Wrapper className="Wrapper">
       <Card className="SignUpCard">
+        <Logo src={require("../images/anywhere.png")} alt="fitness" />
         <Title>Create a New Account</Title>
+
         <Form onSubmit={handleSignUp}>
           <Label>
             Username

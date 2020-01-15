@@ -63,8 +63,13 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-family: "Raleway", roboto, serif;
   text-align: center;
+`;
+
+export const Logo = styled.img`
+  width: 90%;
+  margin-top: 15%;
+  margin-left: 6%;
 `;
 
 const initialState = {

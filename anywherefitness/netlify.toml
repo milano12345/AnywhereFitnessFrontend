@@ -1,8 +1,8 @@
-ID = "503d045f-0c48-464c-a25e-be89d27fc677"
+
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/App.js"
   status = 200
 
 # Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
@@ -14,4 +14,4 @@ ID = "503d045f-0c48-464c-a25e-be89d27fc677"
   # This is the directory that you are publishing from (relative to root of your repo)
   publish = "anywherefitness/build/"
   # This will be your default build command
-  command = "yarn build"
+  command = "yarn run build"

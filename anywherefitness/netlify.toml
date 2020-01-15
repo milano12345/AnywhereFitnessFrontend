@@ -1,0 +1,17 @@
+ID = "503d045f-0c48-464c-a25e-be89d27fc677"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
+
+[build]
+  # This is the directory to change to before starting a build.
+  base    = "anywherefitness/"
+  # NOTE: This is where we will look for package.json/.nvmrc/etc, not root.
+  # This is the directory that you are publishing from (relative to root of your repo)
+  publish = "anywherefitness/build/"
+  # This will be your default build command
+  command = "yarn build"

@@ -1,14 +1,12 @@
 import React from "react";
-import LogIn from "./components/login";
-import SignUpForm from "./components/signUp";
+import Main from "./components/main";
 import "./App.css";
 
 function App() {
   return (
-    <header>
-      <SignUpForm />
-      <LogIn />
-    </header>
+    <div>
+      <Main />
+    </div>
   );
 }
 

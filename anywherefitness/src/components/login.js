@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -74,7 +74,8 @@ export const Logo = styled.img`
 
 const initialState = {
   username: "",
-  password: ""
+  password: "",
+  department: ""
 };
 
 const LogIn = () => {
@@ -128,6 +129,13 @@ const LogIn = () => {
               value={credentials.password}
               onChange={handleChanges}
             />
+          </Label>
+          <Label>
+            Department
+            <select value={credentials.department} onChange={handleChanges}>
+              <option value="instructor">Instructor</option>
+              <option value="client">Client</option>
+            </select>
           </Label>
           <ButtonRed>New Account</ButtonRed>
           <ButtonGreen onClick={handleSubmit}>Login Now</ButtonGreen>

@@ -1,10 +1,4 @@
 
-
-[[redirects]]
-  from = "/*"
-  to = "/App.js"
-  status = 200
-
 # Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.  
 
 [build]

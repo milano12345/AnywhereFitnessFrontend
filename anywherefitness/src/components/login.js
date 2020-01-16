@@ -155,7 +155,7 @@ const LogIn = props => {
               </option>
             </select>
           </Label>
-          <Link to="/register"><ButtonRed>New Account</ButtonRed></Link>
+          <Link to="/"><ButtonRed>New Account</ButtonRed></Link>
           <ButtonGreen onClick={handleSubmit}>Login Now</ButtonGreen>
         </Form>
       </Login>

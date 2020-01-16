@@ -35,9 +35,10 @@ const SignUpForm = props => {
         credentials
       )
       .then(response => {
+        const { history } = this.props;
         console.log(response);
         localStorage.setItem("token", response.data.token);
-        props.history.push("/login");
+        history.push("/login");
       })
       .catch(err => console.log(err));
   };
@@ -68,7 +69,8 @@ const SignUpForm = props => {
           </Label>
           <Label>
             Department
-            <select value={credentials.department} onChange={handleChanges}>
+            <select value={initialState.department} onChange={handleChanges}>
+              <option value="null">Please select a department</option>
               <option value="instructor">Instructor</option>
               <option value="client">Client</option>
             </select>

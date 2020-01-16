@@ -46,7 +46,7 @@ export const Input = styled.input`
 
 export const Card = styled.div`
   border: 2px solid gray;
-  width: 20rem;
+  width: 22rem;
   border-radius: 20px;
   background-color: white;
   margin-top: 8rem;

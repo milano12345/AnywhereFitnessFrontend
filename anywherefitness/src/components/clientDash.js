@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Cell } from "react-mdl";
+import BottomNav from "./footer";
 
 class Landing extends Component {
   render() {
@@ -111,6 +112,7 @@ class Landing extends Component {
             specimen book.
           </p>
         </Cell>
+        <BottomNav style={{ marginTop: "20%" }} />
       </Grid>
     );
   }

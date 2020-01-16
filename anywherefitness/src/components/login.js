@@ -95,8 +95,7 @@ export const Logo = styled.img`
 
 const initialState = {
   username: "",
-  password: "",
-  department: ""
+  password: ""
 };
 
 const LogIn = props => {
@@ -117,7 +116,7 @@ const LogIn = props => {
         console.log(response);
         console.log(props);
         localStorage.setItem("token", response.data.token);
-        if (response.type === "instructor") {
+        if (response.data.type === "instructor") {
           history.push("/instructor");
         } else {
           history.push("/client");

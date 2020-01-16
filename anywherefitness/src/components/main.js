@@ -6,7 +6,7 @@ import Landing from "./landing";
 
 const Main = () => (
   <Switch>
-    <Route exact path="/register" component={SignUpForm} />
+    <Route exact path="/" component={SignUpForm} />
     <Route path="/login" component={LogIn} />
     <Route path="/landing" component={Landing} />
   </Switch>

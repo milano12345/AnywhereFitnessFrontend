@@ -120,6 +120,8 @@ select {
 .resume-left-col {
   background: cadetblue;
   border-radius: 5%;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 @media (max-width: 839px) and (min-width: 480px) {
@@ -142,6 +144,8 @@ select {
 
 .resume-right-col {
   background-color: white;
-  border-radius: 5%;
-  margin: 6px;
+  border-radius: 1%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 10px !important;
 }

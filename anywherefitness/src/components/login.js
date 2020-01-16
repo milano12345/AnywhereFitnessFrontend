@@ -84,21 +84,17 @@ const LogIn = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log(credentials);
     axios
       .post(
-        `https://github-user-breakdown.herokuapp.com/login`,
-        `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
-        {
-          headers: {
-            Authorization: `Basic ${btoa("lambda-school:lambda-secret")}`,
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        }
+        "https://anywhere-fitness92.herokuapp.com/api/auth/login",
+        credentials
       )
       .then(response => {
+        //const { history } = this.props;
         console.log(response);
-        localStorage.setItem("token", response.data.access_token);
-        // props.history.push('')
+        localStorage.setItem("token", response.data.token);
+        //history.push("/login");
       })
       .catch(err => console.log(err));
   };
@@ -110,7 +106,8 @@ const LogIn = () => {
   return (
     <Wrapper className="wrapper">
       <Card className="LoginCard">
-        <Title>Github User Card Login</Title>
+        <Logo src={require("../images/anywhere.png")} alt="fitness" />
+        <Title>Please Login Below</Title>
         <Form className="LoginForm">
           <Label>
             Username
@@ -132,9 +129,20 @@ const LogIn = () => {
           </Label>
           <Label>
             Department
-            <select value={credentials.department} onChange={handleChanges}>
-              <option value="instructor">Instructor</option>
-              <option value="client">Client</option>
+            <select
+              name="department"
+              value={credentials.department}
+              onChange={handleChanges}
+            >
+              <option name="department" value="null">
+                Please select a department
+              </option>
+              <option name="department" value="instructor">
+                Instructor
+              </option>
+              <option name="department" value="client">
+                Client
+              </option>
             </select>
           </Label>
           <ButtonRed>New Account</ButtonRed>

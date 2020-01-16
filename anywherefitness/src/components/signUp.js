@@ -90,7 +90,7 @@ const SignUpForm = props => {
             <ButtonRed>Log In</ButtonRed>
           </Link>
           <ButtonGreen type="submit" onClick={handleSignUp}>
-            Sign Up Now
+            Create Account
           </ButtonGreen>
         </Form>
       </Card>

@@ -108,14 +108,21 @@ const LogIn = props => {
     console.log(credentials);
     axios
       .post(
-        "https://anywhere-fitness92.herokuapp.com/api/auth/login",
+        //"https://anywhere-fitness92.herokuapp.com/api/auth/login",
+        "http://localhost:3300/api/auth/login",
         credentials
       )
       .then(response => {
-        //const { history } = this.props;
+        const { history } = props;
         console.log(response);
+        console.log(props);
+        console.log("credentials", credentials.department);
         localStorage.setItem("token", response.data.token);
-        props.history.push("/landing");
+        if (response.type === "instructor") {
+          history.push("/instructor");
+        } else {
+          history.push("/client");
+        }
       })
       .catch(err => console.log(err));
   };

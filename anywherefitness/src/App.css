@@ -79,7 +79,8 @@ select {
 .nav-wrapper {
   background: linear-gradient(to right, #1565c0, #b92b27);
   width: 100%;
-  height: 60px;
+  height: 30px;
+  margin-top: 12px;
 }
 
 /* Spineeer */
@@ -142,4 +143,5 @@ select {
 .resume-right-col {
   background-color: white;
   border-radius: 5%;
+  margin: 6px;
 }

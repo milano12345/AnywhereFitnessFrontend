@@ -20,7 +20,7 @@ class Landing extends Component {
             />
           </div>
           <h4 style={{ color: "black", marginLeft: "5%" }}>Welcome!</h4>
-          <h3 style={{ color: "black", marginLeft: "5%" }}>Dashboard</h3>
+          <h3 style={{ color: "black", marginLeft: "5%" }}>Client Dashboard</h3>
           <hr
             style={{
               borderTop: "3px solid #833fb2",
@@ -67,7 +67,7 @@ class Landing extends Component {
           </div>
         </Cell>
         <Cell className="resume-right-col" col={8} style={{ margin: "0px" }}>
-          <h2 style={{ margin: "25px" }}>About Me</h2>
+          <h2 style={{ margin: "25px" }}>This month's classes</h2>
           <p style={{ margin: "25px" }}>
             Lorem ipsum, or lipsum as it is sometimes known, is dummy text used
             in laying out print, graphic or web designs. The passage is

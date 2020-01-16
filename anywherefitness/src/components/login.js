@@ -33,6 +33,7 @@ export const Label = styled.label`
   margin-bottom: 0.5em;
   color: black;
   display: block;
+  font-family: lobster, cursive;
 `;
 
 export const Input = styled.input`
@@ -47,7 +48,7 @@ export const Input = styled.input`
 
 export const Card = styled.div`
   border: 2px solid gray;
-  width: 30rem;
+  width: 28rem;
   border-radius: 20px;
   background-color: white;
   margin-top: 8rem;
@@ -56,7 +57,7 @@ export const Card = styled.div`
 
 export const Login = styled.div`
   border: 2px solid gray;
-  width: 30rem;
+  width: 28rem;
   border-radius: 20px;
   background-color: white;
   margin-top: 8rem;

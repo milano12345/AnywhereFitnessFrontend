@@ -116,7 +116,6 @@ const LogIn = props => {
         const { history } = props;
         console.log(response);
         console.log(props);
-        console.log("credentials", credentials.department);
         localStorage.setItem("token", response.data.token);
         if (response.type === "instructor") {
           history.push("/instructor");
@@ -155,7 +154,7 @@ const LogIn = props => {
               onChange={handleChanges}
             />
           </Label>
-          <Label>
+          {/* <Label>
             Department
             <select
               name="department"
@@ -172,7 +171,7 @@ const LogIn = props => {
                 Client
               </option>
             </select>
-          </Label>
+          </Label> */}
           <Link to="/">
             <ButtonRed>New Account</ButtonRed>
           </Link>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import {
   ButtonGreen,
@@ -85,7 +86,9 @@ const SignUpForm = props => {
             </select>
           </Label>
 
-          <ButtonRed>Go back</ButtonRed>
+          <Link to="/login">
+            <ButtonRed>Log In</ButtonRed>
+          </Link>
           <ButtonGreen type="submit" onClick={handleSignUp}>
             Sign Up Now
           </ButtonGreen>

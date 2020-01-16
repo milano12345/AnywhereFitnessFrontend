@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 export const ButtonGreen = styled.button`
   background-color: #28a745;
@@ -154,7 +155,7 @@ const LogIn = props => {
               </option>
             </select>
           </Label>
-          <ButtonRed>New Account</ButtonRed>
+          <Link to="/register"><ButtonRed>New Account</ButtonRed></Link>
           <ButtonGreen onClick={handleSubmit}>Login Now</ButtonGreen>
         </Form>
       </Login>

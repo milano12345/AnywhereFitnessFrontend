@@ -87,7 +87,7 @@ const initialState = {
   department: ""
 };
 
-const LogIn = () => {
+const LogIn = props => {
   const [credentials, setCredentials] = useState(initialState);
   console.log(credentials);
 
@@ -103,7 +103,7 @@ const LogIn = () => {
         //const { history } = this.props;
         console.log(response);
         localStorage.setItem("token", response.data.token);
-        //history.push("/login");
+        props.history.push("/landing");
       })
       .catch(err => console.log(err));
   };

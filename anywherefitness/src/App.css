@@ -117,18 +117,29 @@ select {
 }
 
 .resume-left-col {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(30, 30, 255, 1) 0%,
-    rgba(0, 212, 255, 1) 23%
-  );
+  background: cadetblue;
+  border-radius: 5%;
 }
 
 @media (max-width: 839px) and (min-width: 480px) {
   .mdl-cell--4-col,
   .mdl-cell--4-col-tablet.mdl-cell--4-col-tablet {
     width: 100% !important;
+    border-radius: 5%;
   }
+}
+
+.mdl-grid {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(30, 30, 255, 1) 0%,
+    rgba(0, 212, 255, 1) 23%
+  ) !important;
+}
+
+.resume-right-col {
+  background-color: white;
+  border-radius: 5%;
 }

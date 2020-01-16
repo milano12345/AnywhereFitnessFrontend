@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ButtonGreen = styled.button`
   background-color: #28a745;
@@ -9,7 +9,7 @@ export const ButtonGreen = styled.button`
   border-radius: 10%;
   color: white;
   width: 40%;
-  margin-left: 3rem;
+  margin-left: 20%;
   height: 2rem;
 `;
 
@@ -47,7 +47,7 @@ export const Input = styled.input`
 
 export const Card = styled.div`
   border: 2px solid gray;
-  width: 22rem;
+  width: 30rem;
   border-radius: 20px;
   background-color: white;
   margin-top: 8rem;
@@ -56,15 +56,21 @@ export const Card = styled.div`
 
 export const Login = styled.div`
   border: 2px solid gray;
-  width: 22rem;
+  width: 30rem;
   border-radius: 20px;
-  background-color: cadetblue;
+  background-color: white;
   margin-top: 8rem;
   margin-bottom: 8rem;
 `;
 
 export const Wrapper = styled.div`
-  background-color: #2b3137;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(30, 30, 255, 1) 0%,
+    rgba(0, 212, 255, 1) 23%
+  );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,12 +80,16 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h3`
   text-align: center;
+  font-family: lobster, cursive;
+  font-style: normal;
+  font-weight: 400;
 `;
 
 export const Logo = styled.img`
   width: 90%;
   margin-top: 15%;
   margin-left: 6%;
+  border-radius: 4%;
 `;
 
 const initialState = {
@@ -155,7 +165,9 @@ const LogIn = props => {
               </option>
             </select>
           </Label>
-          <Link to="/"><ButtonRed>New Account</ButtonRed></Link>
+          <Link to="/">
+            <ButtonRed>New Account</ButtonRed>
+          </Link>
           <ButtonGreen onClick={handleSubmit}>Login Now</ButtonGreen>
         </Form>
       </Login>

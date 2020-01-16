@@ -21,6 +21,7 @@ const initialState = {
 const SignUpForm = props => {
   const [credentials, setCredentials] = useState(initialState);
   console.log(credentials);
+  console.log(props);
 
   const handleChanges = event => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -35,9 +36,8 @@ const SignUpForm = props => {
         credentials
       )
       .then(response => {
-        
         console.log(response);
-        //history.push("/login");
+        props.history.push("/login");
       })
       .catch(err => console.log(err));
   };

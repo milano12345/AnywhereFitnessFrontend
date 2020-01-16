@@ -53,6 +53,15 @@ export const Card = styled.div`
   margin-bottom: 8rem;
 `;
 
+export const Login = styled.div`
+  border: 2px solid gray;
+  width: 22rem;
+  border-radius: 20px;
+  background-color: cadetblue;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+`;
+
 export const Wrapper = styled.div`
   background-color: #2b3137;
   display: flex;
@@ -105,7 +114,7 @@ const LogIn = () => {
 
   return (
     <Wrapper className="wrapper">
-      <Card className="LoginCard">
+      <Login className="LoginCard">
         <Logo src={require("../images/anywhere.png")} alt="fitness" />
         <Title>Please Login Below</Title>
         <Form className="LoginForm">
@@ -148,7 +157,7 @@ const LogIn = () => {
           <ButtonRed>New Account</ButtonRed>
           <ButtonGreen onClick={handleSubmit}>Login Now</ButtonGreen>
         </Form>
-      </Card>
+      </Login>
     </Wrapper>
   );
 };

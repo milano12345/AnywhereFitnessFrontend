@@ -33,7 +33,7 @@ export const Label = styled.label`
   margin-bottom: 0.5em;
   color: black;
   display: block;
-  font-family: lobster, cursive;
+  font-size: 1.3rem;
 `;
 
 export const Input = styled.input`
@@ -81,7 +81,7 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h3`
   text-align: center;
-  font-family: lobster, cursive;
+  font-size: 1.7rem;
   font-style: normal;
   font-weight: 400;
 `;

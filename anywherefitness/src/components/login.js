@@ -83,7 +83,7 @@ export const Title = styled.h3`
   text-align: center;
   font-size: 1.7rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 export const Logo = styled.img`

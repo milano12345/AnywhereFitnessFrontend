@@ -150,8 +150,20 @@ select {
   margin-top: 10px !important;
 }
 
-@media (max-width: 550px) and (min-width: 1px) {
+.MuiTypography-body2 {
+  font-weight: 800 !important;
+}
+
+@media (max-width: 780px) and (min-width: 1px) {
   .makeStyles-card-1 {
     width: 100% !important;
+    margin: 2%;
+  }
+}
+
+@media screen and (device-width: 580px) and (device-height: 900px) {
+  .makeStyles-card-1 {
+    width: 100% !important;
+    margin: 2%;
   }
 }

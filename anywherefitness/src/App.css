@@ -161,6 +161,13 @@ select {
   }
 }
 
+@media only screen and (max-width: 800px) and (orientation: portrait) {
+  .makeStyles-card-1 {
+    width: 100% !important;
+    margin: 2%;
+  }
+}
+
 @media screen and (device-width: 580px) and (device-height: 900px) {
   .makeStyles-card-1 {
     width: 100% !important;

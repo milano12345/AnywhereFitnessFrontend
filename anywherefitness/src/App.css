@@ -153,3 +153,10 @@ select {
 .MuiTypography-body2 {
   font-weight: 800 !important;
 }
+
+@media (max-width: 500px) {
+  .makeStyles-card-1 {
+    width: 100% !important;
+    margin: 1%;
+  }
+}

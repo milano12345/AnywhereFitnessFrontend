@@ -6,6 +6,12 @@ import { Link } from "react-router-dom";
 export const CardStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
+  @media (max-width: 500px) {
+    .makeStyles-card-1 {
+      width: 100% !important;
+      margin: 1%;
+    }
+  }
 `;
 export const ButtonGreen = styled.button`
   background-color: #28a745;

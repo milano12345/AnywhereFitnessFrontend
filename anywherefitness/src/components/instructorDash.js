@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Grid, Cell } from "react-mdl";
 import BottomNav from "./footer";
 
-class Landing extends Component {
-  render() {
+const InstructorDash = props => {
     return (
       <Grid>
         <Cell className="resume-left-col" col={4}>
@@ -118,6 +117,5 @@ class Landing extends Component {
       </Grid>
     );
   }
-}
 
-export default Landing;
+export default InstructorDash;

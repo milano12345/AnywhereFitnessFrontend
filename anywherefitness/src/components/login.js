@@ -3,6 +3,10 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+export const CardStyles = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 export const ButtonGreen = styled.button`
   background-color: #28a745;
   border-color: 1px #28a745;

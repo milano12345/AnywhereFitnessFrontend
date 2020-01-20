@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Cell } from "react-mdl";
 import BottomNav from "./footer";
 import { CardStyles } from "./login";
@@ -7,13 +7,15 @@ import ClassCards from "./classCards";
 
 const InstructorDash = props => {
   const [classes, setClasses] = useState([]);
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/classes")
+      .then(res => {
+        console.log(res);
+        setClasses(res.data);
+      });
+  }, []);
 
-  axiosWithAuth()
-    .get("/classes")
-    .then(res => {
-      console.log(res);
-      setClasses(res.data);
-    });
   return (
     <Grid>
       <Cell className="resume-left-col" col={4}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Cell } from "react-mdl";
 import BottomNav from "./footer";
 import { axiosWithAuth } from "./axiosWithAuth";
@@ -8,13 +8,14 @@ import { CardStyles } from "./login";
 const ClientDash = props => {
   const [classes, setClasses] = useState([]);
   console.log(classes);
-
-  axiosWithAuth()
-    .get("/classes")
-    .then(res => {
-      console.log(res);
-      setClasses(res.data);
-    });
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/classes")
+      .then(res => {
+        console.log(res);
+        setClasses(res.data);
+      });
+  }, []);
 
   return (
     <Grid>

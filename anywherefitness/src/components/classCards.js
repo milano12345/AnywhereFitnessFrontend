@@ -31,6 +31,20 @@ export const Card = styled.div`
   }
 `;
 
+export const Select = styled.select`
+  padding: 0.5em;
+  color: black;
+  background-color: lightgray;
+  border: silver;
+  border-radius: 3px;
+  width: 85%;
+  opacity: 0;
+  margin-bottom: 0.5em;
+  position: relative;
+  right: 0px;
+  top: -54px;
+`;
+
 const useStyles = makeStyles(theme => ({
   //   card: {
   //     maxWidth: "100%",
@@ -59,6 +73,14 @@ function ClassCards(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
+  const handleClick = e => {
+    if ((document.getElementById("Select").style.opacity = 0)) {
+      console.log("hello");
+    } else {
+      console.log("failed");
+    }
+  };
+
   function handleExpandClick() {
     setExpanded(!expanded);
   }
@@ -72,13 +94,24 @@ function ClassCards(props) {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton onClick={handleClick} aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
         title={props.data.name}
         subheader={props.data.type}
       />
+      <Select name="options" id="Select">
+        <option name="option" value="blue">
+          Please Select An Option
+        </option>
+        <option name="delete" value="delete">
+          Delete This Class
+        </option>
+        <option name="edit" value="edit">
+          Edit This Class
+        </option>
+      </Select>
       <CardMedia
         className={classes.media}
         image="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"

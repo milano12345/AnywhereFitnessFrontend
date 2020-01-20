@@ -3,7 +3,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import Card from "@material-ui/core/Card";
+// import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -16,12 +16,20 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { ButtonRed } from "./login";
+import styled from "styled-components";
+
+export const Card = styled.div`
+  margin: 1%;
+  @media (min-width: 480px) {
+    width: 100% !important;
+  }
+`;
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: "100%",
-    margin: "1%"
-  },
+  //   card: {
+  //     maxWidth: "100%",
+  //     margin: "1%"
+  //   },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9

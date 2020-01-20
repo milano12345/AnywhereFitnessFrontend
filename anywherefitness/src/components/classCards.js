@@ -20,7 +20,7 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   margin: 1%;
-  @media (min-width: 480px) {
+  @media (max-width: 800px) {
     width: 100% !important;
   }
 `;

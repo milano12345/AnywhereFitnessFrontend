@@ -3,20 +3,19 @@ import { Grid, Cell } from "react-mdl";
 import BottomNav from "./footer";
 import { axiosWithAuth } from "./axiosWithAuth";
 import ClassCards from "./classCards";
-import { ButtonGreen, CardStyles } from "./login";
+import { CardStyles } from "./login";
 
 const ClientDash = props => {
   const [classes, setClasses] = useState([]);
   console.log(classes);
-  const handleClick = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .get("/classes")
-      .then(res => {
-        console.log(res);
-        setClasses(res.data);
-      });
-  };
+
+  axiosWithAuth()
+    .get("/classes")
+    .then(res => {
+      console.log(res);
+      setClasses(res.data);
+    });
+
   return (
     <Grid>
       <Cell className="resume-left-col" col={4}>
@@ -75,19 +74,13 @@ const ClientDash = props => {
               color: "darkgray"
             }}
           >
-            -Attention all clients... member dues will be collected on the 5th
-            of next month. Thank you.
+            New lockers will be installed during the weeks of 02/23/2020 -
+            03/07/2020. Please plan accordingly, thank you!
           </p>
         </div>
       </Cell>
       <Cell className="resume-right-col" col={8} style={{ margin: "0px" }}>
         <h2 style={{ margin: "25px" }}>This month's classes</h2>
-        <ButtonGreen
-          onClick={handleClick}
-          style={{ marginBottom: "20px", marginLeft: "28%" }}
-        >
-          See The Classes
-        </ButtonGreen>
         <CardStyles>
           {classes.map(item => (
             <ClassCards key={item.id} name={item.id} data={item} />

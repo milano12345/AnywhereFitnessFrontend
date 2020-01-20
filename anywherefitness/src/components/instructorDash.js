@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Cell } from "react-mdl";
 import BottomNav from "./footer";
-import { CardStyles } from "./login";
+import { CardStyles, ButtonGreen } from "./login";
 import { axiosWithAuth } from "./axiosWithAuth";
 import ClassCards from "./classCards";
+import PostClassForm from "./postClassForm"
 
 const InstructorDash = props => {
   const [classes, setClasses] = useState([]);
+  const [opacity, setOpacity] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
   useEffect(() => {
     axiosWithAuth()
       .get("/classes")
@@ -15,6 +18,20 @@ const InstructorDash = props => {
         setClasses(res.data);
       });
   }, []);
+
+
+  const changeOpacity = e => {
+    if (hidden === false) {
+      console.log(hidden);
+      document.getElementById("hidden").style.opacity = 1;
+      setHidden(true);
+    } else if (opacity === true) {
+      document.getElementsById("hidden").style.opacity = 0;
+      document.getElementById("hidden").style.width = 0
+      console.log(hidden)
+      setHidden(false);
+    }
+  };
 
   return (
     <Grid>
@@ -83,6 +100,8 @@ const InstructorDash = props => {
       </Cell>
       <Cell className="resume-right-col" col={8} style={{ margin: "0px" }}>
         <h2 style={{ margin: "25px" }}>This month's classes</h2>
+        <ButtonGreen onClick={changeOpacity} style={{ marginLeft: "28%" }}>Add a New Class</ButtonGreen>
+        <div id="hidden" style={{ opacity: 0 }}><PostClassForm /></div>
         <CardStyles>
           {classes.map(item => (
             <ClassCards key={item.id} name={item.id} data={item} />

@@ -76,13 +76,6 @@ function ClassCards(props) {
   const [opacity, setOpacity] = React.useState(false);
 
   const handleClick = e => {
-    // if ((opacity = "false")) {
-    //   document.getElementById("options").style.opacity = 1;
-    //   setOpacity("true");
-    // } else if ((opacity = "true")) {
-    //   setOpacity("false");
-    //   document.getElementById("options").style.opacity = 0;
-    // }
     if (opacity === false) {
       console.log(opacity);
       document.getElementById("options").style.opacity = 1;
@@ -106,8 +99,8 @@ function ClassCards(props) {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon onClick={handleClick} />
+          <IconButton onClick={handleClick} aria-label="settings">
+            <MoreVertIcon />
           </IconButton>
         }
         title={props.data.name}

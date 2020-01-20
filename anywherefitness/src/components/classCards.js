@@ -42,7 +42,8 @@ export const Select = styled.select`
   margin-bottom: 0.5em;
   position: relative;
   right: 0px;
-  top: -54px;
+  height: 8%;
+  top: -56px;
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -72,12 +73,23 @@ const useStyles = makeStyles(theme => ({
 function ClassCards(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [opacity, setOpacity] = React.useState(false);
 
   const handleClick = e => {
-    if ((document.getElementById("Select").style.opacity = 0)) {
-      console.log("hello");
-    } else {
-      console.log("failed");
+    // if ((opacity = "false")) {
+    //   document.getElementById("options").style.opacity = 1;
+    //   setOpacity("true");
+    // } else if ((opacity = "true")) {
+    //   setOpacity("false");
+    //   document.getElementById("options").style.opacity = 0;
+    // }
+    if (opacity === false) {
+      console.log(opacity);
+      document.getElementById("options").style.opacity = 1;
+      setOpacity(true);
+    } else if (opacity === true) {
+      document.getElementById("options").style.opacity = 0;
+      setOpacity(false);
     }
   };
 
@@ -94,14 +106,14 @@ function ClassCards(props) {
           </Avatar>
         }
         action={
-          <IconButton onClick={handleClick} aria-label="settings">
-            <MoreVertIcon />
+          <IconButton aria-label="settings">
+            <MoreVertIcon onClick={handleClick} />
           </IconButton>
         }
         title={props.data.name}
         subheader={props.data.type}
       />
-      <Select name="options" id="Select">
+      <Select name="options" id="options">
         <option name="option" value="blue">
           Please Select An Option
         </option>

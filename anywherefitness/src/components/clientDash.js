@@ -82,7 +82,12 @@ const ClientDash = props => {
       </Cell>
       <Cell className="resume-right-col" col={8} style={{ margin: "0px" }}>
         <h2 style={{ margin: "25px" }}>This month's classes</h2>
-        <ButtonGreen onClick={handleClick}>See The Classes</ButtonGreen>
+        <ButtonGreen
+          onClick={handleClick}
+          style={{ marginBottom: "20px", marginLeft: "28%" }}
+        >
+          See The Classes
+        </ButtonGreen>
         <CardStyles>
           {classes.map(item => (
             <ClassCards key={item.id} name={item.id} data={item} />

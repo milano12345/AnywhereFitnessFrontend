@@ -20,6 +20,12 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   margin: 1%;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #fff;
   @media (max-width: 800px) {
     width: 100% !important;
   }
@@ -58,7 +64,7 @@ function ClassCards(props) {
   }
 
   return (
-    <Card className={classes.card}>
+    <Card className="cardStyle">
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -98,7 +104,7 @@ function ClassCards(props) {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-
+        <div>Add to Favorites</div>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded

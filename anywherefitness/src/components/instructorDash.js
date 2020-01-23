@@ -4,7 +4,7 @@ import BottomNav from "./footer";
 import { CardStyles, ButtonGreen } from "./login";
 import { axiosWithAuth } from "./axiosWithAuth";
 import ClassCards from "./classCards";
-import PostClassForm from "./postClassForm"
+import PostClassForm from "./postClassForm";
 
 const InstructorDash = props => {
   const [classes, setClasses] = useState([]);
@@ -19,16 +19,19 @@ const InstructorDash = props => {
       });
   }, []);
 
-
   const changeOpacity = e => {
     if (hidden === false) {
       console.log(hidden);
       document.getElementById("hidden").style.opacity = 1;
+      document.getElementById("hidden").style.position = "";
+      document.getElementById("hidden").style.right = "";
+
       setHidden(true);
-    } else if (opacity === true) {
-      document.getElementsById("hidden").style.opacity = 0;
-      document.getElementById("hidden").style.width = 0
-      console.log(hidden)
+    } else if (hidden === true) {
+      document.getElementById("hidden").style.opacity = 0;
+      document.getElementById("hidden").style.position = "absolute";
+      document.getElementById("hidden").style.right = "110%";
+      console.log(hidden);
       setHidden(false);
     }
   };
@@ -100,8 +103,15 @@ const InstructorDash = props => {
       </Cell>
       <Cell className="resume-right-col" col={8} style={{ margin: "0px" }}>
         <h2 style={{ margin: "25px" }}>This month's classes</h2>
-        <ButtonGreen onClick={changeOpacity} style={{ marginLeft: "28%" }}>Add a New Class</ButtonGreen>
-        <div id="hidden" style={{ opacity: 0 }}><PostClassForm /></div>
+        <ButtonGreen onClick={changeOpacity} style={{ marginLeft: "28%" }}>
+          Add a New Class
+        </ButtonGreen>
+        <div
+          id="hidden"
+          style={{ opacity: 0, position: "absolute", right: "110%" }}
+        >
+          <PostClassForm />
+        </div>
         <CardStyles>
           {classes.map(item => (
             <ClassCards key={item.id} name={item.id} data={item} />

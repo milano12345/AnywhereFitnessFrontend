@@ -27,7 +27,7 @@ export const Card = styled.div`
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   background-color: #fff;
-  width: 30%;
+  width: 48%;
   height: 1%;
   @media (max-width: 800px) {
     width: 100% !important;
@@ -44,16 +44,9 @@ export const Select = styled.select`
   opacity: 0;
   margin-bottom: 0.5em;
   position: relative;
-  right: 0px;
-  height: 10%;
-  top: -56px;
 `;
 
 const useStyles = makeStyles(theme => ({
-  //   card: {
-  //     maxWidth: "100%",
-  //     margin: "1%"
-  //   },
   media: {
     height: 0,
     paddingTop: "56.25%" // 16:9
@@ -77,6 +70,12 @@ function ClassCards(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [opacity, setOpacity] = React.useState(false);
+  const [formData, setFormData] = React.useState({});
+
+  console.log(formData);
+  const handleChanges = event => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
 
   const handleClick = e => {
     if (opacity === false) {
@@ -119,14 +118,14 @@ function ClassCards(props) {
         title={props.data.name}
         subheader={props.data.type}
       />
-      <Select className="options">
-        <option name="option" value="blue">
+      <Select name="options" className="options" onChange={handleChanges}>
+        <option name="option" value={formData.null}>
           Please Select An Option
         </option>
-        <option onClick={console.log("delete")} name="delete" value="delete">
+        <option name="delete" value={formData.delete}>
           Delete This Class
         </option>
-        <option onClick={console.log("edit")} name="edit" value="edit">
+        <option name="edit" value={formData.edit}>
           Edit This Class
         </option>
       </Select>

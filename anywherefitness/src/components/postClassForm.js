@@ -1,22 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { ButtonGreen, Form, Label, Input } from "./login";
 import { axiosWithAuth } from "./axiosWithAuth";
 
 const PostClassForm = props => {
-  const initialState = [
-    {
-      name: "",
-      type: "",
-      length_minutes: "",
-      intensitylvl: "",
-      location: "",
-      current_size: "",
-      max_size: ""
-    }
-  ];
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState({});
 
   console.log(formData);
 
@@ -28,10 +15,11 @@ const PostClassForm = props => {
     e.preventDefault();
     console.log(formData);
     axiosWithAuth()
-      .post("/classes")
+      .post("/createclass", formData)
       .then(res => {
         console.log(res);
-        window.reload();
+        window.location.reload();
+        // setFormData(initialState);
       });
   };
 
@@ -68,9 +56,9 @@ const PostClassForm = props => {
         <Label>
           Intensity Level(1-10)
           <Input
-            name="intensity_lvl"
-            type="text"
-            value={formData.intensity_lvl}
+            name="intensitylvl"
+            type="number"
+            value={formData.intensitylvl}
             onChange={handleChanges}
           />
         </Label>
@@ -78,7 +66,7 @@ const PostClassForm = props => {
           Length(minutes)
           <Input
             name="length_minutes"
-            type="text"
+            type="number"
             value={formData.length_minutes}
             onChange={handleChanges}
           />
@@ -87,7 +75,7 @@ const PostClassForm = props => {
           Current Size
           <Input
             name="current_size"
-            type="text"
+            type="number"
             value={formData.current_size}
             onChange={handleChanges}
           />
@@ -96,12 +84,14 @@ const PostClassForm = props => {
           Max Size
           <Input
             name="max_size"
-            type="text"
+            type="number"
             value={formData.max_size}
             onChange={handleChanges}
           />
         </Label>
-        <ButtonGreen onClick={handleClasses}>Submit</ButtonGreen>
+        <ButtonGreen style={{ marginLeft: "64%" }} onClick={handleClasses}>
+          Submit
+        </ButtonGreen>
       </Form>
     </div>
   );

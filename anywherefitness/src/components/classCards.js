@@ -4,6 +4,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 // import Card from "@material-ui/core/Card";
+
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -26,6 +27,8 @@ export const Card = styled.div`
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   background-color: #fff;
+  width: 30%;
+  height: 1%;
   @media (max-width: 800px) {
     width: 100% !important;
   }
@@ -42,7 +45,7 @@ export const Select = styled.select`
   margin-bottom: 0.5em;
   position: relative;
   right: 0px;
-  height: 8%;
+  height: 10%;
   top: -56px;
 `;
 
@@ -78,10 +81,20 @@ function ClassCards(props) {
   const handleClick = e => {
     if (opacity === false) {
       console.log(opacity);
-      document.getElementById("options").style.opacity = 1;
-      setOpacity(true);
+      Array.from(document.getElementsByClassName("options")).forEach(function(
+        item
+      ) {
+        item.style.opacity = 1;
+        item.style.height = "10%";
+
+        setOpacity(true);
+      });
     } else if (opacity === true) {
-      document.getElementById("options").style.opacity = 0;
+      Array.from(document.getElementsByClassName("options")).forEach(function(
+        item
+      ) {
+        item.style.opacity = 0;
+      });
       setOpacity(false);
     }
   };
@@ -106,14 +119,14 @@ function ClassCards(props) {
         title={props.data.name}
         subheader={props.data.type}
       />
-      <Select name="options" id="options">
+      <Select className="options">
         <option name="option" value="blue">
           Please Select An Option
         </option>
-        <option name="delete" value="delete">
+        <option onClick={console.log("delete")} name="delete" value="delete">
           Delete This Class
         </option>
-        <option name="edit" value="edit">
+        <option onClick={console.log("edit")} name="edit" value="edit">
           Edit This Class
         </option>
       </Select>

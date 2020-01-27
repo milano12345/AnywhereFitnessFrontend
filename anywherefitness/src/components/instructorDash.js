@@ -8,7 +8,6 @@ import PostClassForm from "./postClassForm";
 
 const InstructorDash = props => {
   const [classes, setClasses] = useState([]);
-  const [opacity, setOpacity] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
   useEffect(() => {
     axiosWithAuth()

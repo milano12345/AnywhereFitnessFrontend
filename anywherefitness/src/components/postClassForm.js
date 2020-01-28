@@ -18,7 +18,7 @@ const PostClassForm = props => {
       .post("/createclass", formData)
       .then(res => {
         console.log(res);
-        window.location.reload(false);
+        //window.location.reload(false);
         // setFormData(initialState);
       });
   };

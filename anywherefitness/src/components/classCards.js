@@ -196,7 +196,7 @@ function ClassCards(props) {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <div>Add to Favorites</div>
+        <div>Expand to Sign Up</div>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded

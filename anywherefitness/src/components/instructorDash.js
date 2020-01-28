@@ -16,7 +16,7 @@ const InstructorDash = props => {
         console.log(res);
         setClasses(res.data);
       });
-  }, []);
+  }, [hidden]);
 
   const changeOpacity = e => {
     if (hidden === false) {

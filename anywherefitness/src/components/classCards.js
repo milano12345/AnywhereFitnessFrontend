@@ -3,7 +3,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-// import Card from "@material-ui/core/Card";
+import { axiosWithAuth } from "./axiosWithAuth";
 
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -32,6 +32,11 @@ export const Card = styled.div`
   @media (max-width: 800px) {
     width: 100% !important;
   }
+`;
+
+export const Checkbox = styled.img`
+  width: 14%;
+  opacity: 0;
 `;
 
 export const Select = styled.select`
@@ -73,8 +78,22 @@ function ClassCards(props) {
   const [formData, setFormData] = React.useState({});
 
   console.log(formData);
+
   const handleChanges = event => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    if ((formData.options = "Delete This Class")) {
+      Array.from(document.getElementsByClassName("confirmDelete")).forEach(
+        function(item) {
+          item.style.opacity = 1;
+        }
+      );
+    } else if ((formData.options = "Edit This Class")) {
+      Array.from(document.getElementsByClassName("confirmEdit")).forEach(
+        function(item) {
+          item.style.opacity = 0;
+        }
+      );
+    }
   };
 
   const handleClick = e => {
@@ -85,7 +104,6 @@ function ClassCards(props) {
       ) {
         item.style.opacity = 1;
         item.style.height = "10%";
-
         setOpacity(true);
       });
     } else if (opacity === true) {
@@ -96,6 +114,17 @@ function ClassCards(props) {
       });
       setOpacity(false);
     }
+  };
+
+  const handleDelete = () => {
+    console.log(props);
+    axiosWithAuth()
+      .delete(`/${props.data.id}`)
+      .then(res => {
+        console.log(res);
+        window.location.reload(false);
+        // setFormData(initialState);
+      });
   };
 
   function handleExpandClick() {
@@ -129,6 +158,19 @@ function ClassCards(props) {
           Edit This Class
         </option>
       </Select>
+
+      <Checkbox
+        src="https://img.icons8.com/flat_round/64/000000/checkmark.png"
+        alt="checkbox-confirm-delete"
+        className="confirmDelete"
+        onClick={handleDelete}
+      />
+      {/* <Checkbox
+        src="https://img.icons8.com/flat_round/64/000000/checkmark.png"
+        alt="checkbox-confirm-edit"
+        className="confirmEdit"
+      /> */}
+
       <CardMedia
         className={classes.media}
         image="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"

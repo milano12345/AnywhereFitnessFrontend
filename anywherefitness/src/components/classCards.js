@@ -4,7 +4,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import { axiosWithAuth } from "./axiosWithAuth";
-
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -18,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { ButtonRed } from "./login";
 import styled from "styled-components";
+import createHistory from 'history/createBrowserHistory'
 
 export const Card = styled.div`
   margin: 1%;
@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ClassCards(props) {
+const ClassCards = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [opacity, setOpacity] = React.useState(false);
@@ -81,13 +81,13 @@ function ClassCards(props) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if ((formData.options = "Delete This Class")) {
       Array.from(document.getElementsByClassName("confirmDelete")).forEach(
-        function(item) {
+        function (item) {
           item.style.opacity = 1;
         }
       );
     } else if ((formData.options = "Edit This Class")) {
       Array.from(document.getElementsByClassName("confirmEdit")).forEach(
-        function(item) {
+        function (item) {
           item.style.opacity = 0;
         }
       );
@@ -97,7 +97,7 @@ function ClassCards(props) {
   const handleClick = e => {
     if (opacity === false) {
       console.log(opacity);
-      Array.from(document.getElementsByClassName("options")).forEach(function(
+      Array.from(document.getElementsByClassName("options")).forEach(function (
         item
       ) {
         item.style.opacity = 1;
@@ -105,7 +105,7 @@ function ClassCards(props) {
         setOpacity(true);
       });
     } else if (opacity === true) {
-      Array.from(document.getElementsByClassName("options")).forEach(function(
+      Array.from(document.getElementsByClassName("options")).forEach(function (
         item
       ) {
         item.style.opacity = 0;
@@ -115,11 +115,12 @@ function ClassCards(props) {
   };
 
   const handleDelete = () => {
-    console.log(props);
     axiosWithAuth()
       .delete(`/${props.data.id}`)
       .then(res => {
-        window.location.reload(false);
+        console.log(res)
+        const history = createHistory();
+        history.go(0)
       });
   };
 

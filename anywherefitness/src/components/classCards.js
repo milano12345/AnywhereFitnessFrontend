@@ -77,8 +77,6 @@ function ClassCards(props) {
   const [opacity, setOpacity] = React.useState(false);
   const [formData, setFormData] = React.useState({});
 
-  console.log(formData);
-
   const handleChanges = event => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if ((formData.options = "Delete This Class")) {
@@ -121,9 +119,7 @@ function ClassCards(props) {
     axiosWithAuth()
       .delete(`/${props.data.id}`)
       .then(res => {
-        console.log(res);
         window.location.reload(false);
-        // setFormData(initialState);
       });
   };
 
@@ -177,14 +173,6 @@ function ClassCards(props) {
         title="Workout"
       />
       <CardContent>
-        {/* <Typography variant="body2" color="textSecondary" component="p">
-          <p style={{ fontSize: "14px", fontWeight: "800" }}>
-            Location: {props.data.location}
-          </p>
-          <p style={{ fontSize: "14px", fontWeight: "800" }}>
-            Intensity Level : {props.data.intensitylvl}
-          </p>
-        </Typography> */}
         <Typography paragraph style={{ fontWeight: "800" }}>
           Date: TBA <br /> Location: {props.data.location} <br />
           Intensity Level: {props.data.intensitylvl}

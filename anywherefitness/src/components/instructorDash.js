@@ -1,14 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Cell } from "react-mdl";
 import BottomNav from "./footer";
-import { CardStyles, ButtonGreen } from "./login";
 import { axiosWithAuth } from "./axiosWithAuth";
 import ClassCards from "./classCards";
-import PostClassForm from "./postClassForm";
+import { CardStyles, ButtonGreen, Form, Label, Input } from "./login";
 
 const InstructorDash = props => {
   const [classes, setClasses] = useState([]);
   const [hidden, setHidden] = React.useState(false);
+  const [formData, setFormData] = useState({});
+  console.log("instructor page", formData);
+
+  console.log(formData);
+
+  const handleChanges = event => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleClasses = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("/createclass", formData)
+      .then(res => {
+        axiosWithAuth()
+          .get("/classes")
+          .then(res => {
+            console.log(res);
+            setClasses(res.data);
+          });
+        if ((res.status = 200)) {
+          document.querySelector(".hiddenSuccess").style.opacity = 1;
+          setFormData({
+            name: "",
+            type: "",
+            location: "",
+            intensitylvl: "",
+            length_minutes: "",
+            current_size: "",
+            max_size: ""
+          });
+        } else {
+          console.log("fail");
+        }
+      });
+  };
+
   useEffect(() => {
     axiosWithAuth()
       .get("/classes")
@@ -109,7 +145,83 @@ const InstructorDash = props => {
           id="hidden"
           style={{ opacity: 0, position: "absolute", right: "110%" }}
         >
-          <PostClassForm />
+          {/* <PostClassForm /> */}
+          <div className="form-wrapper">
+            <Form className="ClassForm">
+              <Label>
+                Name
+                <Input
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <Label>
+                Type
+                <Input
+                  name="type"
+                  type="text"
+                  value={formData.type}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <Label>
+                Location
+                <Input
+                  name="location"
+                  type="text"
+                  value={formData.location}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <Label>
+                Intensity Level(1-10)
+                <Input
+                  name="intensitylvl"
+                  type="number"
+                  value={formData.intensitylvl}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <Label>
+                Length(minutes)
+                <Input
+                  name="length_minutes"
+                  type="number"
+                  value={formData.length_minutes}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <Label>
+                Current Size
+                <Input
+                  name="current_size"
+                  type="number"
+                  value={formData.current_size}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <Label>
+                Max Size
+                <Input
+                  name="max_size"
+                  type="number"
+                  value={formData.max_size}
+                  onChange={handleChanges}
+                />
+              </Label>
+              <ButtonGreen
+                onClick={handleClasses}
+                style={{ marginLeft: "64%" }}
+              >
+                Submit
+              </ButtonGreen>
+              <div style={{ opacity: "0" }} className={"hiddenSuccess"}>
+                Class Successfully Added!
+              </div>
+            </Form>
+          </div>
         </div>
         <CardStyles>
           {classes.map(item => (

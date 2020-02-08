@@ -10,7 +10,7 @@ const Main = () => (
     <Route exact path="/" component={SignUpForm} />
     <Route path="/login" component={LogIn} />
     <Route path="/client" component={ClientDash} />
-    <Route path="/instructor" component={InstructorDash} />
+    <Route path="/instructor" render={(props) => <InstructorDash {...props} />} />
   </Switch>
 );
 

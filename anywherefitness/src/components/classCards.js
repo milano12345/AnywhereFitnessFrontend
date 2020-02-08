@@ -17,7 +17,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { ButtonRed } from "./login";
 import styled from "styled-components";
-import createHistory from 'history/createBrowserHistory'
 
 export const Card = styled.div`
   margin: 1%;
@@ -119,8 +118,10 @@ const ClassCards = props => {
       .delete(`/${props.data.id}`)
       .then(res => {
         console.log(res)
-        const history = createHistory();
-        history.go(0)
+        console.log('props!', props)
+        props.props.history.push("/")
+        props.props.history.push("/instructor")
+
       });
   };
 

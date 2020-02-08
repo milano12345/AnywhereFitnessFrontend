@@ -9,9 +9,10 @@ const InstructorDash = props => {
   const [classes, setClasses] = useState([]);
   const [hidden, setHidden] = React.useState(false);
   const [formData, setFormData] = useState({});
-  console.log("instructor page", formData);
+  //console.log("instructor page", formData);
 
-  console.log(formData);
+  //console.log(formData);
+  console.log('ohlawd', props)
 
   const handleChanges = event => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -225,7 +226,7 @@ const InstructorDash = props => {
         </div>
         <CardStyles>
           {classes.map(item => (
-            <ClassCards key={item.id} name={item.id} data={item} />
+            <ClassCards key={item.id} props={props} name={item.id} data={item} />
           ))}
         </CardStyles>
       </Cell>

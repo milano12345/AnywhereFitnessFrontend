@@ -119,7 +119,7 @@ const ClassCards = props => {
       .then(res => {
         console.log(res)
         console.log('props!', props)
-        props.props.history.push("/")
+        props.props.history.push("/client")
         props.props.history.push("/instructor")
 
       });

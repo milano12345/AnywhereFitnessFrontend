@@ -7,6 +7,15 @@ import { CardStyles } from "./login";
 
 const ClientDash = props => {
   const [classes, setClasses] = useState([]);
+  const [bulletin, setBulletin] = useState([])
+
+  const newBulletin = () => {
+    setBulletin(bulletin => [...bulletin, "Attention all clients. Member dues will be collected on the 5th!"])
+    newBulletin2()
+    newBulletin3()
+  }
+  const newBulletin2 = () => setBulletin(bulletin => [...bulletin, "Stay safe!, wear a mask!"])
+  const newBulletin3 = () => setBulletin(bulletin => [...bulletin, "Coronavirus is out there! Be safe!"])
   console.log(classes);
   useEffect(() => {
     axiosWithAuth()
@@ -63,8 +72,8 @@ const ClientDash = props => {
               color: "darkgray"
             }}
           >
-            -Attention all clients... member dues will be collected on the 5th
-            of next month. Thank you.
+            {bulletin[0]}
+            {console.log(bulletin)}
           </p>
           <p
             style={{
@@ -75,8 +84,11 @@ const ClientDash = props => {
               color: "darkgray"
             }}
           >
-            New lockers will be installed during the weeks of 02/23/2020 -
-            03/07/2020. Please plan accordingly, thank you!
+
+            {bulletin[1]}
+            <br />
+            {bulletin[2]}
+            <button onClick={newBulletin}>Click here to see bulletins</button>
           </p>
         </div>
       </Cell>

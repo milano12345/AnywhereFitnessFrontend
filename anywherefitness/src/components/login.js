@@ -82,6 +82,8 @@ export const Wrapper = styled.div`
   align-items: center;
   margin-top: auto;
   margin-bottom: auto;
+  width: 100%;
+  height: 100vh;
 `;
 
 export const Title = styled.h3`
@@ -91,23 +93,16 @@ export const Title = styled.h3`
   font-weight: 600;
 `;
 
-export const Logo = styled.img`
-  width: 90%;
-  margin-top: 15%;
-  margin-left: 6%;
-  border-radius: 4%;
-`;
-
 const initialState = {
   username: "",
-  password: ""
+  password: "",
 };
 
-const LogIn = props => {
+const LogIn = (props) => {
   const [credentials, setCredentials] = useState(initialState);
   console.log(credentials);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(credentials);
     axios
@@ -116,7 +111,7 @@ const LogIn = props => {
         // "http://localhost:3300/api/auth/login",
         credentials
       )
-      .then(response => {
+      .then((response) => {
         const { history } = props;
         console.log(response);
         console.log(props);
@@ -127,17 +122,17 @@ const LogIn = props => {
           history.push("/client");
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  const handleChanges = event => {
+  const handleChanges = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
 
   return (
     <Wrapper className="wrapper">
       <Login className="LoginCard">
-        <Logo src={require("../images/anywhere.png")} alt="fitness" />
+        {/* <Logo src={require("../images/anywhere.png")} alt="fitness" /> */}
         <Title>Please Login Below</Title>
         <Form className="LoginForm">
           <Label>

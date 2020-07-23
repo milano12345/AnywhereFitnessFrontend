@@ -10,25 +10,34 @@ import {
   Card,
   Wrapper,
   Title,
-  Logo
 } from "./login";
 
 const initialState = {
   username: "",
   password: "",
-  department: ""
+  department: "",
 };
 
-const SignUpForm = props => {
+const SignUpForm = (props) => {
   const [credentials, setCredentials] = useState(initialState);
   console.log(credentials);
   console.log(props);
 
-  const handleChanges = event => {
+  const handleChanges = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
 
-  const handleSignUp = e => {
+  const showCodeBox = (e) => {
+    const textBox = document.querySelector(".code");
+    console.log(e.target.value);
+    if (e.target.value === "instructor") {
+      textBox.style.display = "block";
+    } else {
+      textBox.style.display = "none";
+    }
+  };
+
+  const handleSignUp = (e) => {
     e.preventDefault();
     console.log(credentials);
     axios
@@ -36,18 +45,16 @@ const SignUpForm = props => {
         "https://anywhere-fitness92.herokuapp.com/api/auth/register",
         credentials
       )
-      .then(response => {
+      .then((response) => {
         console.log(response);
         props.history.push("/login");
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
   return (
     <Wrapper className="Wrapper">
       <Card className="SignUpCard">
-        <Logo src={require("../images/anywhere.png")} alt="fitness" />
         <Title>Create a New Account</Title>
-
         <Form onSubmit={handleSignUp}>
           <Label>
             Username
@@ -72,7 +79,7 @@ const SignUpForm = props => {
             <select
               name="department"
               value={credentials.department}
-              onChange={handleChanges}
+              onChange={(handleChanges, showCodeBox)}
             >
               <option name="department" value="null">
                 Please select a department
@@ -84,6 +91,15 @@ const SignUpForm = props => {
                 Client
               </option>
             </select>
+          </Label>
+          <Label className="code" style={{ display: "none" }}>
+            Enter Code
+            <Input
+              type="code"
+              name="code"
+              value={credentials.code}
+              onChange={handleChanges}
+            />
           </Label>
 
           <Link to="/login">

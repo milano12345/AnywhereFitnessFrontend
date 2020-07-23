@@ -79,7 +79,8 @@ const SignUpForm = (props) => {
             <select
               name="department"
               value={credentials.department}
-              onChange={(handleChanges, showCodeBox)}
+              onChange={handleChanges}
+              onClick={showCodeBox}
             >
               <option name="department" value="null">
                 Please select a department

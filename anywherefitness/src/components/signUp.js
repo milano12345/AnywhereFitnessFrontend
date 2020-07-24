@@ -80,12 +80,15 @@ const SignUpForm = (props) => {
               name="department"
               value={credentials.department}
               onChange={handleChanges}
-              onClick={showCodeBox}
             >
               <option name="department" value="null">
                 Please select a department
               </option>
-              <option name="department" value="instructor">
+              <option
+                name="department"
+                onChange={showCodeBox}
+                value="instructor"
+              >
                 Instructor
               </option>
               <option name="department" value="client">

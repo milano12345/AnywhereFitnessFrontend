@@ -93,6 +93,14 @@ export const Title = styled.h3`
   font-weight: 600;
 `;
 
+export const Subtitle = styled.h2`
+  font-family: arial;
+  font-size: 1.1rem;
+  text-align: center;
+  width: 66%;
+  margin: auto;
+  line-height: 1.5rem;
+`;
 const initialState = {
   username: "",
   password: "",

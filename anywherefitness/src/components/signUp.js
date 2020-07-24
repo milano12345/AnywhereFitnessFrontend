@@ -10,6 +10,7 @@ import {
   Card,
   Wrapper,
   Title,
+  Subtitle,
 } from "./login";
 
 const initialState = {
@@ -52,6 +53,9 @@ const SignUpForm = (props) => {
     <Wrapper className="Wrapper">
       <Card className="SignUpCard">
         <Title>Create a New Account</Title>
+        <Subtitle>
+          If you already have an account, please click Log In to sign in now.
+        </Subtitle>
         <Form onSubmit={handleSignUp}>
           <Label>
             Username

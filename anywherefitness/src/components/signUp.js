@@ -38,7 +38,6 @@ const SignUpForm = (props) => {
   };
 
   useEffect(() => {
-    // Update the document title using the browser API
     error.error && handleError(error.error.response.status);
   }, [error.error]);
 

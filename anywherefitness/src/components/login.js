@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -108,7 +108,27 @@ const initialState = {
 
 const LogIn = (props) => {
   const [credentials, setCredentials] = useState(initialState);
+  const [error, setError] = useState({ error: "" });
+
   console.log(credentials);
+
+  useEffect(() => {
+    error.error && handleError(error.error.response.status);
+  }, [error.error]);
+
+  const handleError = (err) => {
+    if (err === 400) {
+      alert("Missing form data. Username and password must be entered.");
+    } else if (err === 500) {
+      alert(
+        "Incorrect instructor code or Username is already in use, try again with a new code or Username."
+      );
+    }
+  };
+
+  const handleChanges = (event) => {
+    setCredentials({ ...credentials, [event.target.name]: event.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -130,11 +150,7 @@ const LogIn = (props) => {
           history.push("/client");
         }
       })
-      .catch((err) => console.log(err));
-  };
-
-  const handleChanges = (event) => {
-    setCredentials({ ...credentials, [event.target.name]: event.target.value });
+      .catch((err) => setError({ error: err }));
   };
 
   return (
@@ -142,6 +158,10 @@ const LogIn = (props) => {
       <Login className="LoginCard">
         {/* <Logo src={require("../images/anywhere.png")} alt="fitness" /> */}
         <Title>Please Login Below</Title>
+        <Subtitle>
+          If you don't already have an account, please click New Account to make
+          an account now.
+        </Subtitle>
         <Form className="LoginForm">
           <Label>
             Username

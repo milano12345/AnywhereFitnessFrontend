@@ -25,12 +25,9 @@ const SignUpForm = (props) => {
 
   const handleChanges = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
-  };
-
-  const showCodeBox = (e) => {
     const textBox = document.querySelector(".code");
-    console.log(e.target.value);
-    if (e.target.value === "instructor") {
+    console.log(event.target.value);
+    if (event.target.value === "instructor") {
       textBox.style.display = "block";
     } else {
       textBox.style.display = "none";
@@ -80,7 +77,6 @@ const SignUpForm = (props) => {
               name="department"
               value={credentials.department}
               onChange={handleChanges}
-              onChange={showCodeBox}
             >
               <option name="department" value="null">
                 Please select a department

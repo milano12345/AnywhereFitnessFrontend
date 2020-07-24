@@ -21,17 +21,31 @@ const initialState = {
 
 const SignUpForm = (props) => {
   const [credentials, setCredentials] = useState(initialState);
+  const [error, setError] = useState({ error: "" });
   console.log(credentials);
+  console.log("newerror", error);
   console.log(props);
 
   const handleChanges = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
     const textBox = document.querySelector(".code");
-    console.log(event.target.value);
+    console.log("value", event.target.value);
     if (event.target.value === "instructor") {
       textBox.style.display = "block";
-    } else {
+    } else if (event.target.value === "client") {
       textBox.style.display = "none";
+    }
+  };
+
+  const handleError = (err) => {
+    if (err === 400) {
+      alert(
+        "Missing form data. Username, password and department must be selected"
+      );
+    } else if (err === 500) {
+      alert(
+        "Incorrect instructor code or Username is already in use, try again with a new code or Username"
+      );
     }
   };
 
@@ -43,11 +57,14 @@ const SignUpForm = (props) => {
         "https://anywhere-fitness92.herokuapp.com/api/auth/register",
         credentials
       )
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res);
+        if (res.status === "400") {
+          alert("Missing information");
+        }
         props.history.push("/login");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError({ error: err }));
   };
   return (
     <Wrapper className="Wrapper">
@@ -96,13 +113,12 @@ const SignUpForm = (props) => {
           <Label className="code" style={{ display: "none" }}>
             Enter Code
             <Input
-              type="code"
+              type="text"
               name="code"
               value={credentials.code}
               onChange={handleChanges}
             />
           </Label>
-
           <Link to="/login">
             <ButtonRed>Log In</ButtonRed>
           </Link>
@@ -111,6 +127,9 @@ const SignUpForm = (props) => {
           </ButtonGreen>
         </Form>
       </Card>
+      {error.error && (
+        <h5 className="error">{handleError(error.error.response.status)}</h5>
+      )}
     </Wrapper>
   );
 };

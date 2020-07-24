@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {
@@ -37,14 +37,19 @@ const SignUpForm = (props) => {
     }
   };
 
+  useEffect(() => {
+    // Update the document title using the browser API
+    error.error && handleError(error.error.response.status);
+  }, [error.error]);
+
   const handleError = (err) => {
     if (err === 400) {
       alert(
-        "Missing form data. Username, password and department must be selected"
+        "Missing form data. Username, password and department must be selected."
       );
     } else if (err === 500) {
       alert(
-        "Incorrect instructor code or Username is already in use, try again with a new code or Username"
+        "Incorrect instructor code or Username is already in use, try again with a new code or Username."
       );
     }
   };
@@ -127,9 +132,9 @@ const SignUpForm = (props) => {
           </ButtonGreen>
         </Form>
       </Card>
-      {error.error && (
+      {/* {error.error && (
         <h5 className="error">{handleError(error.error.response.status)}</h5>
-      )}
+      )} */}
     </Wrapper>
   );
 };

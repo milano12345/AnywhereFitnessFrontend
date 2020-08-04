@@ -83,7 +83,7 @@ export const Wrapper = styled.div`
   margin-top: auto;
   margin-bottom: auto;
   width: 100%;
-  height: 100vh;
+  overflow: hidden;
 `;
 
 export const Title = styled.h3`

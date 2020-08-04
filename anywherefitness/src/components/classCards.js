@@ -1,5 +1,3 @@
-//this comes from material ui
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -50,33 +48,56 @@ export const Select = styled.select`
   position: relative;
 `;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
     transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: "rotate(180deg)",
   },
   avatar: {
-    backgroundColor: "cadetblue"
-  }
+    backgroundColor: "cadetblue",
+  },
 }));
 
-const ClassCards = props => {
+const ClassCards = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [opacity, setOpacity] = React.useState(false);
   const [formData, setFormData] = React.useState({});
 
-  const handleChanges = event => {
+  const cards = [
+    {
+      img:
+        "https://images.unsplash.com/photo-1564135624576-c5c88640f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80",
+      desc: "Campsite",
+    },
+    {
+      img:
+        "https://images.unsplash.com/photo-1564198879220-63f2734f7cec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2072&q=80",
+      desc: "Space",
+    },
+    {
+      img:
+        "https://images.unsplash.com/photo-1559534747-b6ea1cae1c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80",
+      desc: "road",
+    },
+    {
+      img:
+        "https://images.unsplash.com/photo-1562772186-ad68d3906ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
+      desc: "ocean",
+    },
+  ];
+
+  const handleChanges = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if ((formData.options = "Delete This Class")) {
       Array.from(document.getElementsByClassName("confirmDelete")).forEach(
@@ -93,7 +114,7 @@ const ClassCards = props => {
     }
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     if (opacity === false) {
       console.log(opacity);
       Array.from(document.getElementsByClassName("options")).forEach(function (
@@ -116,12 +137,11 @@ const ClassCards = props => {
   const handleDelete = () => {
     axiosWithAuth()
       .delete(`/${props.data.id}`)
-      .then(res => {
-        console.log(res)
-        console.log('props!', props)
-        props.props.history.push("/client")
-        props.props.history.push("/instructor")
-
+      .then((res) => {
+        console.log(res);
+        console.log("props!", props);
+        props.props.history.push("/client");
+        props.props.history.push("/instructor");
       });
   };
 
@@ -163,17 +183,9 @@ const ClassCards = props => {
         className="confirmDelete"
         onClick={handleDelete}
       />
-      {/* <Checkbox
-        src="https://img.icons8.com/flat_round/64/000000/checkmark.png"
-        alt="checkbox-confirm-edit"
-        className="confirmEdit"
-      /> */}
-
-      <CardMedia
-        className={classes.media}
-        image="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-        title="Workout"
-      />
+      {cards.map((card) => (
+        <CardMedia className={classes.media} image={card.img} title="Workout" />
+      ))}
       <CardContent>
         <Typography paragraph style={{ fontWeight: "800" }}>
           Date: TBA <br /> Location: {props.data.location} <br />
@@ -189,7 +201,7 @@ const ClassCards = props => {
         <div>Expand to Sign Up</div>
         <IconButton
           className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded
+            [classes.expandOpen]: expanded,
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
@@ -211,6 +223,6 @@ const ClassCards = props => {
       </Collapse>
     </Card>
   );
-}
+};
 
 export default ClassCards;

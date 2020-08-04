@@ -12,6 +12,22 @@ import {
   Title,
   Subtitle,
 } from "./login";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 const initialState = {
   username: "",
@@ -22,6 +38,8 @@ const initialState = {
 const SignUpForm = (props) => {
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState({ error: "" });
+  const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
   console.log(credentials);
   console.log("newerror", error);
   console.log(props);
@@ -37,15 +55,24 @@ const SignUpForm = (props) => {
     }
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   useEffect(() => {
     error.error && handleError(error.error.response.status);
   }, [error.error]);
 
   const handleError = (err) => {
     if (err === 400) {
-      alert(
-        "Missing form data. Username, password and department must be selected."
-      );
+      // alert(
+      //   "Missing form data. Username, password and department must be selected."
+      // );
+      setOpen(true);
     } else if (err === 500) {
       alert(
         "Incorrect instructor code or Username is already in use, try again with a new code or Username."
@@ -130,6 +157,13 @@ const SignUpForm = (props) => {
             Create Account
           </ButtonGreen>
         </Form>
+        <div className={classes.root}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              Missing form data. Please fill in all fields.
+            </Alert>
+          </Snackbar>
+        </div>
       </Card>
       {/* {error.error && (
         <h5 className="error">{handleError(error.error.response.status)}</h5>

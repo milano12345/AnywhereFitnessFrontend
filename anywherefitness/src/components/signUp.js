@@ -100,9 +100,16 @@ const SignUpForm = (props) => {
   return (
     <Wrapper className="Wrapper">
       <Card className="SignUpCard">
+        <div className={classes.root}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              Missing form data. Please fill in all fields.
+            </Alert>
+          </Snackbar>
+        </div>
         <Title>Create a New Account</Title>
         <Subtitle>
-          Create a new account below or click Login to sign in with your
+          Create a new account below or click login to sign in with your
           username and password.
         </Subtitle>
         <Form onSubmit={handleSignUp}>
@@ -158,13 +165,6 @@ const SignUpForm = (props) => {
             Create Account
           </ButtonGreen>
         </Form>
-        <div className={classes.root}>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error">
-              Missing form data. Please fill in all fields.
-            </Alert>
-          </Snackbar>
-        </div>
       </Card>
       {/* {error.error && (
         <h5 className="error">{handleError(error.error.response.status)}</h5>

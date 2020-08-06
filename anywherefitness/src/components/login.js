@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const CardStyles = styled.div`
   display: flex;
@@ -107,9 +110,25 @@ const initialState = {
   password: "",
 };
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
+
 const LogIn = (props) => {
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState({ error: "" });
+  const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const classes = useStyles();
 
   console.log(credentials);
 
@@ -117,12 +136,21 @@ const LogIn = (props) => {
     error.error && handleError(error.error.response.status);
   }, [error.error]);
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   const handleError = (err) => {
     if (err === 400) {
-      alert("Missing form data. Username and password must be entered.");
+      setLoading(false);
+      setOpen(true);
+      //("Missing form data. Username and password must be entered.");
     } else if (err === 500) {
       alert(
-        "Incorrect instructor code or Username is already in use, try again with a new code or Username."
+        "Incorrect instructor code or username already in use, try again with a new code or username."
       );
     }
   };
@@ -132,6 +160,7 @@ const LogIn = (props) => {
   };
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     console.log(credentials);
     axios
@@ -157,6 +186,13 @@ const LogIn = (props) => {
   return (
     <Wrapper className="wrapper">
       <Login className="LoginCard">
+        <div className={classes.root}>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              Missing form data. Please fill in all fields.
+            </Alert>
+          </Snackbar>
+        </div>
         {/* <Logo src={require("../images/anywhere.png")} alt="fitness" /> */}
         <Title>Please Login Below</Title>
         <Subtitle>
@@ -182,28 +218,11 @@ const LogIn = (props) => {
               onChange={handleChanges}
             />
           </Label>
-          {/* <Label>
-            Department
-            <select
-              name="department"
-              value={credentials.department}
-              onChange={handleChanges}
-            >
-              <option name="department" value="null">
-                Please select a department
-              </option>
-              <option name="department" value="instructor">
-                Instructor
-              </option>
-              <option name="department" value="client">
-                Client
-              </option>
-            </select>
-          </Label> */}
           <Link to="/">
             <ButtonRed>New Account</ButtonRed>
           </Link>
           <ButtonGreen onClick={handleSubmit}>Login Now</ButtonGreen>
+          {loading ? <div style={{ textAlign: "right" }}>Loading...</div> : ""}
         </Form>
       </Login>
     </Wrapper>

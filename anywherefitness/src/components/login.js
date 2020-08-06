@@ -147,7 +147,6 @@ const LogIn = (props) => {
     if (err === 400) {
       setLoading(false);
       setOpen(true);
-      //("Missing form data. Username and password must be entered.");
     } else if (err === 500) {
       alert(
         "Incorrect instructor code or username already in use, try again with a new code or username."

@@ -41,7 +41,7 @@ const SignUpForm = (props) => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [unique, setUnique] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
+
   const classes = useStyles();
 
   console.log(credentials);
@@ -115,15 +115,6 @@ const SignUpForm = (props) => {
             <Alert onClose={handleClose} severity="error">
               Incorrect instructor code or username is already in use, try again
               with a new code or username.
-            </Alert>
-          </Snackbar>
-          <Snackbar
-            open={success}
-            autoHideDuration={6000}
-            onClose={handleClose}
-          >
-            <Alert onClose={handleClose} severity="success">
-              Account created successfully! Welcome!
             </Alert>
           </Snackbar>
         </div>

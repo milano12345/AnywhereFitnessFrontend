@@ -196,8 +196,8 @@ const LogIn = (props) => {
         {/* <Logo src={require("../images/anywhere.png")} alt="fitness" /> */}
         <Title>Please Login Below</Title>
         <Subtitle>
-          If you don't already have an account, please click New Account to make
-          an account now.
+          If you don't have an account, please click New Account to make an
+          account now.
         </Subtitle>
         <Form className="LoginForm">
           <Label>

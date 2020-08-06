@@ -128,6 +128,7 @@ const LogIn = (props) => {
   const [error, setError] = useState({ error: "" });
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [unique, setUnique] = React.useState(false);
   const classes = useStyles();
 
   console.log(credentials);
@@ -147,10 +148,9 @@ const LogIn = (props) => {
     if (err === 400) {
       setLoading(false);
       setOpen(true);
-    } else if (err === 500) {
-      alert(
-        "Incorrect instructor code or username already in use, try again with a new code or username."
-      );
+    } else if (err === 401) {
+      setLoading(false);
+      setUnique(true);
     }
   };
 
@@ -189,6 +189,11 @@ const LogIn = (props) => {
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="error">
               Missing form data. Please fill in all fields.
+            </Alert>
+          </Snackbar>
+          <Snackbar open={unique} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error">
+              Incorrect password. Please try again.
             </Alert>
           </Snackbar>
         </div>

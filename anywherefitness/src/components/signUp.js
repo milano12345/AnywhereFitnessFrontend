@@ -102,7 +102,8 @@ const SignUpForm = (props) => {
       <Card className="SignUpCard">
         <Title>Create a New Account</Title>
         <Subtitle>
-          If you already have an account, please click Log In to sign in now.
+          Create a new account below or click Login to sign in with your
+          username and password.
         </Subtitle>
         <Form onSubmit={handleSignUp}>
           <Label>

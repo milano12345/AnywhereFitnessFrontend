@@ -74,30 +74,35 @@ const ClassCards = (props) => {
   const [opacity, setOpacity] = React.useState(false);
   const [formData, setFormData] = React.useState({});
 
+  const image = (cards) => {
+    console.log(cards[Math.floor(Math.random() * cards.length)]);
+    return cards[Math.floor(Math.random() * cards.length)].toString();
+  };
+
   const cards = [
-    {
-      img:
-        "https://images.unsplash.com/photo-1564135624576-c5c88640f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3300&q=80",
-      desc: "Campsite",
-    },
-    {
-      img:
-        "https://images.unsplash.com/photo-1564198879220-63f2734f7cec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2072&q=80",
-      desc: "Space",
-    },
-    {
-      img:
-        "https://images.unsplash.com/photo-1559534747-b6ea1cae1c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80",
-      desc: "road",
-    },
-    {
-      img:
-        "https://images.unsplash.com/photo-1562772186-ad68d3906ca9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
-      desc: "ocean",
-    },
+    "https://images.pexels.com/photos/2479184/pexels-photo-2479184.jpeg?cs=srgb&dl=pexels-derick-santos-2479184.jpg&fm=jpg",
+    "https://images.pexels.com/photos/2475877/pexels-photo-2475877.jpeg?cs=srgb&dl=pexels-li-sun-2475877.jpg&fm=jpg",
+    "https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/221247/pexels-photo-221247.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+    "https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/4720236/pexels-photo-4720236.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/1671217/pexels-photo-1671217.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/1153369/pexels-photo-1153369.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/2294361/pexels-photo-2294361.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/221210/pexels-photo-221210.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/791763/pexels-photo-791763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/28080/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+    "https://images.pexels.com/photos/17840/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/1552248/pexels-photo-1552248.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/2827400/pexels-photo-2827400.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "https://images.pexels.com/photos/903171/pexels-photo-903171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   ];
 
   const handleChanges = (event) => {
+    event.preventDefault();
     setFormData({ ...formData, [event.target.name]: event.target.value });
     if ((formData.options = "Delete This Class")) {
       Array.from(document.getElementsByClassName("confirmDelete")).forEach(
@@ -114,7 +119,17 @@ const ClassCards = (props) => {
     }
   };
 
+  // function shuffle(array) {
+  //   if (array.length > 0) {
+  //     const newimg = array.splice(0, 1);
+  //     return newimg;
+  //   } else {
+  //     console.log("no more images");
+  //   }
+  // }
+
   const handleClick = (e) => {
+    e.preventDefault();
     if (opacity === false) {
       console.log(opacity);
       Array.from(document.getElementsByClassName("options")).forEach(function (
@@ -145,7 +160,8 @@ const ClassCards = (props) => {
       });
   };
 
-  function handleExpandClick() {
+  function handleExpandClick(e) {
+    e.preventDefault();
     setExpanded(!expanded);
   }
 
@@ -183,9 +199,11 @@ const ClassCards = (props) => {
         className="confirmDelete"
         onClick={handleDelete}
       />
-      {cards.map((card) => (
-        <CardMedia className={classes.media} image={card.img} title="Workout" />
-      ))}
+      <CardMedia
+        className={classes.media}
+        image={image(cards)}
+        title="Workout"
+      />
       <CardContent>
         <Typography paragraph style={{ fontWeight: "800" }}>
           Date: TBA <br /> Location: {props.data.location} <br />

@@ -5,27 +5,28 @@ import { axiosWithAuth } from "./axiosWithAuth";
 import ClassCards from "./classCards";
 import { CardStyles, ButtonGreen, Form, Label, Input } from "./login";
 
-const InstructorDash = props => {
+const InstructorDash = (props) => {
   const [classes, setClasses] = useState([]);
   const [hidden, setHidden] = React.useState(false);
   const [formData, setFormData] = useState({});
   //console.log("instructor page", formData);
 
   //console.log(formData);
-  console.log('ohlawd', props)
+  console.log("ohlawd", props);
+  console.log("formdata", formData);
 
-  const handleChanges = event => {
+  const handleChanges = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleClasses = e => {
+  const handleClasses = (e) => {
     e.preventDefault();
     axiosWithAuth()
       .post("/createclass", formData)
-      .then(res => {
+      .then((res) => {
         axiosWithAuth()
           .get("/classes")
-          .then(res => {
+          .then((res) => {
             console.log(res);
             setClasses(res.data);
           });
@@ -38,7 +39,7 @@ const InstructorDash = props => {
             intensitylvl: "",
             length_minutes: "",
             current_size: "",
-            max_size: ""
+            max_size: "",
           });
         } else {
           console.log("fail");
@@ -49,13 +50,13 @@ const InstructorDash = props => {
   useEffect(() => {
     axiosWithAuth()
       .get("/classes")
-      .then(res => {
+      .then((res) => {
         console.log(res);
         setClasses(res.data);
       });
   }, [hidden]);
 
-  const changeOpacity = e => {
+  const changeOpacity = (e) => {
     if (hidden === false) {
       console.log(hidden);
       document.getElementById("hidden").style.opacity = 1;
@@ -83,7 +84,7 @@ const InstructorDash = props => {
               height: "250px",
               marginTop: "30px",
               borderRadius: "10%",
-              border: "10px solid skyblue"
+              border: "10px solid skyblue",
             }}
             alt={"Wakeboarding"}
           />
@@ -96,7 +97,7 @@ const InstructorDash = props => {
           style={{
             borderTop: "3px solid #833fb2",
             width: "74%",
-            marginLeft: "21%"
+            marginLeft: "21%",
           }}
         ></hr>
         <div className="text-card">
@@ -106,7 +107,7 @@ const InstructorDash = props => {
               paddingLeft: "16px",
               paddingRight: "16px",
               paddingTop: "16px",
-              color: "darkgray"
+              color: "darkgray",
             }}
           >
             ***Special News Bulletin!{" "}
@@ -117,7 +118,7 @@ const InstructorDash = props => {
               paddingLeft: "16px",
               paddingRight: "16px",
               //paddingBottom: "16px",
-              color: "darkgray"
+              color: "darkgray",
             }}
           >
             -Attention all clients... member dues will be collected on the 5th
@@ -129,7 +130,7 @@ const InstructorDash = props => {
               paddingLeft: "16px",
               paddingRight: "16px",
               paddingBottom: "50px",
-              color: "darkgray"
+              color: "darkgray",
             }}
           >
             New lockers will be installed during the weeks of 02/23/2020 -
@@ -225,8 +226,13 @@ const InstructorDash = props => {
           </div>
         </div>
         <CardStyles>
-          {classes.map(item => (
-            <ClassCards key={item.id} props={props} name={item.id} data={item} />
+          {classes.map((item) => (
+            <ClassCards
+              key={item.id}
+              props={props}
+              name={item.id}
+              data={item}
+            />
           ))}
         </CardStyles>
       </Cell>

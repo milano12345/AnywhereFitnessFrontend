@@ -15,6 +15,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { ButtonRed } from "./login";
 import styled from "styled-components";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import ClassForm from "./ClassForm";
 
 export const Card = styled.div`
   margin: 1%;
@@ -48,7 +51,17 @@ export const Select = styled.select`
   position: relative;
 `;
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
@@ -73,6 +86,7 @@ const ClassCards = (props) => {
   const [expanded, setExpanded] = React.useState(false);
   const [opacity, setOpacity] = React.useState(false);
   const [formData, setFormData] = React.useState({});
+  const [open, setOpen] = React.useState(false);
 
   const image = (cards) => {
     console.log(cards[Math.floor(Math.random() * cards.length)]);
@@ -128,6 +142,14 @@ const ClassCards = (props) => {
   //   }
   // }
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
     if (opacity === false) {
@@ -148,16 +170,21 @@ const ClassCards = (props) => {
       setOpacity(false);
     }
   };
-
+  console.log(formData);
   const handleDelete = () => {
-    axiosWithAuth()
-      .delete(`/${props.data.id}`)
-      .then((res) => {
-        console.log(res);
-        console.log("props!", props);
-        props.props.history.push("/client");
-        props.props.history.push("/instructor");
-      });
+    if (formData.options === "Edit This Class") {
+      setOpen(true);
+      console.log("props.data", props.data);
+    } else if (formData.options === "Delete This Class") {
+      axiosWithAuth()
+        .delete(`/${props.data.id}`)
+        .then((res) => {
+          console.log(res);
+          console.log("props!", props);
+          props.props.history.push("/client");
+          props.props.history.push("/instructor");
+        });
+    }
   };
 
   function handleExpandClick(e) {
@@ -167,6 +194,13 @@ const ClassCards = (props) => {
 
   return (
     <Card className="cardStyle">
+      <div className={classes.root}>
+        <Snackbar open={open} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="info">
+            <ClassForm class={props.data} history={props} />
+          </Alert>
+        </Snackbar>
+      </div>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>

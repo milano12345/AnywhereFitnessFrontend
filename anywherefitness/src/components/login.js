@@ -34,7 +34,7 @@ export const ButtonRed = styled.button`
 export const Form = styled.form`
   display: block;
   width: 300px;
-  margin: 50px auto;
+  margin: auto;
 `;
 
 export const Label = styled.label`

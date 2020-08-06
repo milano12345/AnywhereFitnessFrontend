@@ -101,9 +101,6 @@ function ClassForm(props) {
         <ButtonGreen onClick={handleClasses} style={{ marginLeft: "64%" }}>
           Submit
         </ButtonGreen>
-        <div style={{ opacity: "0" }} className={"hiddenSuccess"}>
-          Class Successfully Added!
-        </div>
       </Form>
     </div>
   );

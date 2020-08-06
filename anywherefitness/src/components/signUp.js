@@ -39,7 +39,9 @@ const SignUpForm = (props) => {
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState({ error: "" });
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const classes = useStyles();
+
   console.log(credentials);
   console.log("newerror", error);
   console.log(props);
@@ -73,14 +75,16 @@ const SignUpForm = (props) => {
       //   "Missing form data. Username, password and department must be selected."
       // );
       setOpen(true);
+      setLoading(false);
     } else if (err === 500) {
       alert(
-        "Incorrect instructor code or Username is already in use, try again with a new code or Username."
+        "Incorrect instructor code or username is already in use, try again with a new code or Username."
       );
     }
   };
 
   const handleSignUp = (e) => {
+    setLoading(true);
     e.preventDefault();
     console.log(credentials);
     axios
@@ -161,9 +165,10 @@ const SignUpForm = (props) => {
           <Link to="/login">
             <ButtonRed>Log In</ButtonRed>
           </Link>
-          <ButtonGreen type="submit" onClick={handleSignUp}>
+          <ButtonGreen type="submit" disabled={loading} onClick={handleSignUp}>
             Create Account
           </ButtonGreen>
+          {loading ? <div style={{ textAlign: "right" }}>Loading...</div> : ""}
         </Form>
       </Card>
       {/* {error.error && (

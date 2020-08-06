@@ -15,9 +15,10 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { ButtonRed } from "./login";
 import styled from "styled-components";
-import Snackbar from "@material-ui/core/Snackbar";
+//import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import ClassForm from "./ClassForm";
+import Modal from "@material-ui/core/Modal";
 
 export const Card = styled.div`
   margin: 1%;
@@ -195,11 +196,28 @@ const ClassCards = (props) => {
   return (
     <Card className="cardStyle">
       <div className={classes.root}>
-        <Snackbar open={open} onClose={handleClose}>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={("center", "center")}
+          style={{
+            margin: "auto",
+            width: "fit-content",
+          }}
+          autofocus
+        >
           <Alert onClose={handleClose} severity="info">
             <ClassForm class={props.data} history={props} />
           </Alert>
-        </Snackbar>
+        </Modal>
+        {/* <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+          <ClassForm class={props.data} history={props} />
+        </Modal> */}
       </div>
       <CardHeader
         avatar={

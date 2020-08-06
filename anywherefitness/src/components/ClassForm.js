@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonGreen, Form, Label, Input } from "./login";
+import { ButtonGreen, Form2, Label, Input } from "./login";
 import { axiosWithAuth } from "./axiosWithAuth";
 
 function ClassForm(props) {
@@ -34,7 +34,7 @@ function ClassForm(props) {
 
   return (
     <div className="form-wrapper">
-      <Form className="ClassForm">
+      <Form2 className="ClassForm">
         <Label>
           Name
           <Input
@@ -101,7 +101,7 @@ function ClassForm(props) {
         <ButtonGreen onClick={handleClasses} style={{ marginLeft: "64%" }}>
           Submit
         </ButtonGreen>
-      </Form>
+      </Form2>
     </div>
   );
 }

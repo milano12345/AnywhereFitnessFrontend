@@ -34,6 +34,12 @@ export const ButtonRed = styled.button`
 export const Form = styled.form`
   display: block;
   width: 300px;
+  margin: 50px auto;
+`;
+
+export const Form2 = styled.form`
+  display: block;
+  width: 300px;
   margin: auto;
 `;
 
